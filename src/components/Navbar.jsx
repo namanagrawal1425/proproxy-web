@@ -25,9 +25,9 @@ export default function Navbar({ onDownloadClick }) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
-        {/* Brand Logo & Name exactly matching Antigravity header */}
+        {/* Brand Logo & Name */}
         <a href="#hero" className="flex items-center gap-2.5 group focus:outline-none">
-          <img src="/logo.svg" alt="ProProxy Arch Logo" className="w-6 h-6 object-contain transition-transform group-hover:scale-105" />
+          <img src="/logo.png" alt="ProProxy Logo" className="w-7 h-7 rounded-lg object-contain transition-transform group-hover:scale-105" />
           <span className="font-display font-medium text-lg tracking-tight text-neutral-900 group-hover:text-black">
             ProProxy
           </span>

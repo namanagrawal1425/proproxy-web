@@ -52,14 +52,14 @@ export default function HeroSection({ onDownloadClick, onGuideClick }) {
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-center text-center">
         
-        {/* Antigravity Logo & Brand Name */}
+        {/* ProProxy Logo & Brand Name */}
         <motion.div
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="flex items-center gap-2.5 mb-8"
         >
-          <img src="/logo.svg" alt="ProProxy Rainbow Arch" className="w-8 h-8 object-contain" />
+          <img src="/logo.png" alt="ProProxy Logo" className="w-9 h-9 rounded-xl object-contain shadow-xs" />
           <span className="font-display font-medium text-2xl sm:text-3xl tracking-tight text-neutral-900">
             ProProxy
           </span>

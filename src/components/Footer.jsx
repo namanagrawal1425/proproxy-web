@@ -15,7 +15,7 @@ export default function Footer({ onDownloadClick }) {
           {/* Brand Info */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
-              <img src="/logo.svg" alt="ProProxy Logo" className="w-6 h-6 object-contain" />
+              <img src="/logo.png" alt="ProProxy Logo" className="w-7 h-7 rounded-lg object-contain" />
               <span className="font-display font-medium text-lg text-neutral-900 tracking-tight">
                 ProProxy
               </span>
