@@ -224,7 +224,7 @@ export default function ReviewsSection() {
                       </div>
                     </div>
 
-                    {/* Name & Stars & Platform */}
+                    {/* Name & Role & Rating */}
                     <div>
                       <div className="font-display font-semibold text-base text-neutral-900 leading-tight">
                         {review.name}
@@ -236,7 +236,7 @@ export default function ReviewsSection() {
                           ))}
                         </div>
                         <span className="text-[11px] font-sans text-neutral-500 font-medium">
-                          {review.platform}
+                          {review.role}
                         </span>
                       </div>
                     </div>
