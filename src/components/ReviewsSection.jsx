@@ -110,20 +110,19 @@ export default function ReviewsSection() {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50/80 border border-blue-200/80 text-xs font-sans font-semibold text-blue-900 mb-5 shadow-2xs hover:scale-105 transition-transform cursor-default">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-            <span>Early Beta & Pilot Feedback</span>
+            <span>User Reviews</span>
           </div>
 
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-950 mb-4 leading-[1.12]">
-            Built with engineers & students.{' '}
+            What People Say{' '}
             <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
-              Tested for perfection.
+              About ProProxy
             </span>
           </h2>
 
           <p className="text-neutral-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            See what early pilot users, campus researchers, and developers have to say as we prepare for the upcoming public launch.
+            Real feedback from users who tested ProProxy on their campus and office networks.
           </p>
         </motion.div>
 
