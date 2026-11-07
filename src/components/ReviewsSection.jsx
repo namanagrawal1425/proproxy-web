@@ -41,7 +41,7 @@ const REVIEWS_DATA = [
     initials: "SM",
     avatarBg: "bg-amber-100 text-amber-800 border-amber-200",
     rating: 5,
-    text: "Very lightweight app that doesn't hang or freeze your laptop. Internet speed stays completely normal and fast. It simply works just like it should. Eagerly waiting for the final launch!",
+    text: "Very lightweight app that doesn't hang or freeze your laptop. Internet speed stays completely normal and fast. It simply works just like it should.",
   },
 ];
 
