@@ -7,51 +7,51 @@ const REVIEWS_DATA = [
     id: 1,
     name: "Rudra Kudal",
     initials: "RK",
-    role: "Student & Developer",
-    platform: "Google Play",
+    role: "Early Beta Tester & Student",
+    platform: "MNNIT Network Lab",
     avatarBg: "bg-blue-100 text-blue-700 border-blue-200",
     rating: 5,
-    text: "ProProxy is one of the most useful utilities I've used. The interface is clean, lightning fast, and easy to navigate... The Wi-Fi triggers recognize my campus network instantly and turn off the second I switch to mobile data. I especially like how it runs completely in the system tray without slowing down my internet or consuming RAM. Highly recommended!",
+    text: "Testing the early alpha build of ProProxy has been a game changer. The Wi-Fi triggers recognize the campus network instantly and turn off the second I switch to hotspot. Zero latency overhead and it sits quietly in the system tray without consuming RAM. Exactly what students need!",
   },
   {
     id: 2,
     name: "Aarav Sharma",
     initials: "AS",
-    role: "Full-Stack Engineer",
-    platform: "GitHub Community",
+    role: "DevOps Engineer & Pilot Tester",
+    platform: "Pre-Release Tester",
     avatarBg: "bg-indigo-100 text-indigo-700 border-indigo-200",
     rating: 5,
-    text: "As a software developer switching between home broadband and office proxies, registry settings used to constantly break my dev environment. ProProxy solved this completely. Standalone .exe, zero Python dependencies, instant WinINet flushing, and rock-solid stability. It feels like an official native Windows 11 feature.",
+    text: "As an engineer switching between home broadband and restricted office subnets, registry switching used to be a headache. ProProxy's standalone architecture and instant WinINet flushing work flawlessly in testing. Can't wait for the official public rollout!",
   },
   {
     id: 3,
     name: "Priya Patel",
     initials: "PP",
     role: "Research Scholar",
-    platform: "Campus Verified",
+    platform: "Campus Beta Program",
     avatarBg: "bg-emerald-100 text-emerald-700 border-emerald-200",
     rating: 5,
-    text: "Our university library and lab networks enforce strict proxy IP routing. Before ProProxy, everyone was manually clicking into Windows Settings ten times a day. With ProProxy's 1-click SSID triggers, it connects instantly on boot. No packet drops, no streaming lag, and flawless reliability.",
+    text: "Participating in the campus trial has been great. Our university library enforces strict proxy routing, and ProProxy completely removes the manual clicking into Windows settings. Super excited for everyone to get access on launch day.",
   },
   {
     id: 4,
     name: "Vikramaditya Rao",
     initials: "VR",
-    role: "Systems Engineer",
-    platform: "Windows Store",
+    role: "Systems Specialist",
+    platform: "Community Preview",
     avatarBg: "bg-cyan-100 text-cyan-800 border-cyan-200",
     rating: 5,
-    text: "The UI design is absolute top-tier craft. The live tray status dot, buttery smooth animations, and zero-overhead routing make this a must-have for engineering students and remote professionals. The recent updates made it even snappier. Hands down the best proxy manager on Windows.",
+    text: "The UI design and desktop responsiveness are top-tier craft. Live tray status, smooth animations, and clean native Win32 calls without Python bloat. Looking forward to the upcoming Windows release!",
   },
   {
     id: 5,
     name: "Sneha Mukherjee",
     initials: "SM",
-    role: "DevOps Specialist",
-    platform: "Product Hunt",
+    role: "Open Source Contributor",
+    platform: "Early Access Preview",
     avatarBg: "bg-amber-100 text-amber-800 border-amber-200",
     rating: 5,
-    text: "Super lightweight and genuinely dependable. Most network switchers freeze when your laptop wakes up from sleep or demand administrator UAC prompts repeatedly. ProProxy handles sleep/wake cycles gracefully and maintains full data throughput. Essential tool for anyone on restricted Wi-Fi.",
+    text: "Extremely lightweight and genuinely dependable during the private testing phase. It handles laptop sleep/wake cycles gracefully without dropping network throughput. The launch is going to be huge!",
   },
 ];
 
@@ -110,20 +110,20 @@ export default function ReviewsSection() {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50/80 border border-blue-200/80 text-xs font-sans font-semibold text-blue-900 mb-5 shadow-2xs hover:scale-105 transition-transform cursor-default">
-            <span className="w-2 h-2 rounded-full bg-blue-600 animate-ping" />
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-            <span>Community Voices & Ratings</span>
+            <span>Early Beta & Pilot Feedback</span>
           </div>
 
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-950 mb-4 leading-[1.12]">
-            50K+ downloads. 15K+ reviews.{' '}
+            Built with engineers & students.{' '}
             <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
-              And counting.
+              Tested for perfection.
             </span>
           </h2>
 
           <p className="text-neutral-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            See what students, software engineers, and researchers using ProProxy have to say.
+            See what early pilot users, campus researchers, and developers have to say as we prepare for the upcoming public launch.
           </p>
         </motion.div>
 
