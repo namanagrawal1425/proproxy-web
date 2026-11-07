@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 import { 
   Download, 
   Monitor, 
-  Apple
+  Apple,
+  Terminal
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { PROPROXY_CONFIG } from '../config';
