@@ -8,7 +8,7 @@ export const PROPROXY_CONFIG = {
     tagline: "Your Connection. Your Control.",
     shortDescription:
       "The next-generation proxy and network traffic orchestration client. Built for developers, security engineers, and privacy-conscious users seeking sub-millisecond routing, protocol inspection, and resilient tunneling.",
-    releaseVersion: "v2.4.0",
+    releaseVersion: "v2.0.0",
     releaseDate: "October 2026",
     statusBadge: "ProProxy 2.4 Available Now",
   },
