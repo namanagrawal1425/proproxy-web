@@ -292,7 +292,7 @@ export default function NetworkSimulator() {
               </div>
 
               <div className="p-3.5 rounded-xl bg-neutral-900/80 border border-neutral-800/80">
-                <span className="text-neutral-500 block mb-1">WinINet Registry Sync</span>
+                <span className="text-neutral-500 block mb-1">Instant Windows Connect</span>
                 <span className="text-emerald-400 flex items-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5" /> Instant HKCU Flushed (0ms)
                 </span>

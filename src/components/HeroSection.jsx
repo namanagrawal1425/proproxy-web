@@ -26,9 +26,9 @@ export default function HeroSection({ onDownloadClick, onGuideClick }) {
 
   const heroBadges = [
     { id: 'all', label: 'All Features', icon: Check },
-    { id: 'ssid', label: 'Auto SSID Detection', icon: Wifi },
-    { id: 'registry', label: 'WinINet Registry Sync', icon: ShieldCheck },
-    { id: 'tray', label: 'System Tray Daemon', icon: Sliders },
+    { id: 'ssid', label: 'Automatic Wi-Fi Detection', icon: Wifi },
+    { id: 'registry', label: 'Instant Windows Connect', icon: ShieldCheck },
+    { id: 'tray', label: 'Runs Silently in Background', icon: Sliders },
     { id: 'portable', label: '100% Free & Portable', icon: Sparkles },
   ];
 

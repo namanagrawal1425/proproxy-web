@@ -23,7 +23,7 @@ const WORKFLOW_STEPS = [
     number: '03',
     title: 'Configure Proxy Server',
     subtitle: 'Host IP & Port settings',
-    description: 'Set your designated proxy address (e.g. 172.31.100.27:3128) with automatic WinINet registry flushing.',
+    description: 'Enter your proxy address and port once (e.g. 172.31.100.27:3128). ProProxy saves it instantly.',
     icon: Sliders,
     detail: 'Instant system integration',
   },

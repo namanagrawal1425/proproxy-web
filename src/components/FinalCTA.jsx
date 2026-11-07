@@ -63,7 +63,7 @@ export default function FinalCTA({ onDownloadClick, onGuideClick }) {
           <span>•</span>
           <span>Zero Telemetry Bloat</span>
           <span>•</span>
-          <span>Native Windows WinINet</span>
+          <span>Native Windows Speed</span>
         </div>
 
       </motion.div>

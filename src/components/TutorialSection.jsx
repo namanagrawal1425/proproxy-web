@@ -32,7 +32,7 @@ export default function TutorialSection() {
             </span>
           </h2>
           <p className="text-neutral-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            Watch the comprehensive guide to auto Wi-Fi network rules, WinINet registry flushing, and system tray operations.
+            Watch the quick walkthrough on setting up your proxy address, auto Wi-Fi rules, and background mode.
           </p>
         </motion.div>
 
