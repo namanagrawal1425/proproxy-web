@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PROPROXY_CONFIG } from '../config';
-import { Download, Menu, X, ChevronRight, Terminal } from 'lucide-react';
+import { Download, Menu, X, ChevronRight } from 'lucide-react';
 
 export default function Navbar({ onDownloadClick }) {
   const [scrolled, setScrolled] = useState(false);
@@ -48,16 +48,6 @@ export default function Navbar({ onDownloadClick }) {
 
         {/* Action Group */}
         <div className="hidden sm:flex items-center gap-3">
-          <a
-            href={PROPROXY_CONFIG.community.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium text-neutral-700 hover:text-neutral-950 bg-neutral-100/80 hover:bg-neutral-200/80 border border-neutral-200/80 rounded-full transition-all hover:scale-105 active:scale-95"
-          >
-            <Terminal className="w-3.5 h-3.5 text-neutral-600" />
-            <span>GitHub</span>
-          </a>
-
           {/* Download pill button matching reference */}
           <button
             onClick={onDownloadClick}
