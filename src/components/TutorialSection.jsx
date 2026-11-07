@@ -20,10 +20,10 @@ export default function TutorialSection() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-100/90 border border-neutral-200 text-xs font-mono text-neutral-800 mb-5 shadow-2xs hover:scale-105 transition-transform cursor-default">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-100/90 border border-neutral-200 text-xs font-sans font-semibold text-neutral-800 mb-5 shadow-2xs hover:scale-105 transition-transform cursor-default">
             <span className="w-2 h-2 rounded-full bg-blue-600 animate-ping" />
             <Video className="w-3.5 h-3.5 text-blue-600" />
-            <span className="font-semibold">OFFICIAL VIDEO WALKTHROUGH</span>
+            <span>Official Video Walkthrough</span>
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-950 mb-5 leading-[1.15]">
             Up and Running in <br className="hidden sm:inline" />
@@ -76,7 +76,7 @@ export default function TutorialSection() {
                     Master ProProxy in 4 Minutes: Nodes, Wi-Fi Automation & Rules
                   </h3>
                   
-                  <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-mono text-neutral-300">
+                  <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-sans text-neutral-300 font-medium">
                     <span className="flex items-center gap-1.5">
                       <Clock className="w-3.5 h-3.5 text-blue-400" /> Duration: {tutorial.duration}
                     </span>
@@ -93,7 +93,7 @@ export default function TutorialSection() {
                     href={tutorial.youtubeWatchUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono text-neutral-300 bg-neutral-900/90 border border-neutral-700 hover:border-white hover:text-white transition-all backdrop-blur-md"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-sans font-medium text-neutral-300 bg-neutral-900/90 border border-neutral-700 hover:border-white hover:text-white transition-all backdrop-blur-md"
                   >
                     <span>Watch on YouTube</span>
                     <ExternalLink className="w-3 h-3" />
@@ -105,7 +105,7 @@ export default function TutorialSection() {
 
           </div>
 
-          <div className="mt-4 px-3 py-2 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-neutral-500 gap-2">
+          <div className="mt-4 px-3 py-2 flex flex-col sm:flex-row items-center justify-between text-xs font-sans text-neutral-500 gap-2">
             <span className="text-neutral-600">
               💡 Configurable YouTube Link: edit <code className="text-neutral-800 bg-neutral-100 px-1.5 py-0.5 rounded border border-neutral-200">src/config.js</code> to link your official walkthrough.
             </span>

@@ -6,7 +6,7 @@ export default function Footer({ onDownloadClick }) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-white border-t border-neutral-200 text-neutral-600 text-xs font-mono pt-16 pb-12">
+    <footer className="bg-white border-t border-neutral-200 text-neutral-600 text-xs font-sans pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Grid */}

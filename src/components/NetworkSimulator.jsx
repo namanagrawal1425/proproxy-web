@@ -90,10 +90,10 @@ export default function NetworkSimulator() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50/80 border border-blue-200/80 text-xs font-mono text-blue-900 mb-5 shadow-2xs hover:scale-105 transition-transform cursor-default">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50/80 border border-blue-200/80 text-xs font-sans font-semibold text-blue-900 mb-5 shadow-2xs hover:scale-105 transition-transform cursor-default">
             <span className="w-2 h-2 rounded-full bg-blue-600 animate-ping" />
             <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-            <span className="font-semibold">INTERACTIVE LIVE SIMULATION</span>
+            <span>Interactive Live Simulation</span>
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-950 mb-5 leading-[1.15]">
             See ProProxy <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent">In Action.</span>
@@ -115,7 +115,7 @@ export default function NetworkSimulator() {
           {/* Top Instruction Bar */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-8 mb-8 border-b border-neutral-200/80 gap-4">
             <div>
-              <span className="text-xs font-mono uppercase tracking-wider text-blue-600 font-semibold flex items-center gap-1.5 mb-1">
+              <span className="text-xs font-sans text-blue-600 font-semibold flex items-center gap-1.5 mb-1">
                 <Laptop className="w-4 h-4" /> Step 1: Select a Test Wi-Fi Network
               </span>
               <h3 className="font-display text-xl font-medium text-neutral-900">
@@ -124,7 +124,7 @@ export default function NetworkSimulator() {
             </div>
 
             {/* Quick manual override buttons */}
-            <div className="flex items-center gap-2 text-xs font-mono">
+            <div className="flex items-center gap-2 text-xs font-sans font-medium">
               <span className="text-neutral-400 hidden sm:inline">Manual Test:</span>
               <button
                 onClick={() => toggleManualOverride(true)}
@@ -174,7 +174,7 @@ export default function NetworkSimulator() {
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-2xl">{net.icon}</span>
                     <span
-                      className={`text-[10px] font-mono px-2 py-0.5 rounded-full font-medium ${
+                      className={`text-[11px] font-sans px-2.5 py-0.5 rounded-full font-medium ${
                         isSelected
                           ? 'bg-neutral-800 text-neutral-200'
                           : 'bg-white text-neutral-600 border border-neutral-200'
@@ -222,7 +222,7 @@ export default function NetworkSimulator() {
                   <Wifi className="w-6 h-6 animate-pulse" />
                 </div>
                 <div>
-                  <div className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider flex items-center gap-2">
+                  <div className="text-xs font-sans text-neutral-400 font-medium flex items-center gap-2">
                     <span>Active Connection</span>
                     {isSwitching ? (
                       <span className="text-amber-400 flex items-center gap-1">
@@ -259,10 +259,10 @@ export default function NetworkSimulator() {
                     )}
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">
+                    <div className="text-[11px] font-sans text-neutral-400 font-medium">
                       Windows Proxy Status
                     </div>
-                    <div className="text-sm font-semibold tracking-wide font-mono">
+                    <div className="text-sm font-semibold tracking-normal font-sans">
                       {isProxyActive ? 'PROXY ENABLED (ON)' : 'PROXY DISABLED (OFF)'}
                     </div>
                   </div>
@@ -272,7 +272,7 @@ export default function NetworkSimulator() {
             </div>
 
             {/* Diagnostic Details Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 text-xs font-mono">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 text-xs font-sans">
               <div className="p-3.5 rounded-xl bg-neutral-900/80 border border-neutral-800/80">
                 <span className="text-neutral-500 block mb-1">Trigger Reason</span>
                 <span className="text-neutral-200">
@@ -302,7 +302,7 @@ export default function NetworkSimulator() {
           </div>
 
           {/* Bottom Footnote */}
-          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-neutral-500 gap-2">
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between text-xs font-sans text-neutral-500 gap-2">
             <span>
               💡 ProProxy runs this exact loop in the background at zero CPU cost using native Windows netsh APIs.
             </span>

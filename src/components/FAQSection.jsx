@@ -49,10 +49,10 @@ export default function FAQSection() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-100/90 border border-neutral-200 text-xs font-mono text-neutral-800 mb-5 shadow-2xs hover:scale-105 transition-transform cursor-default">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-100/90 border border-neutral-200 text-xs font-sans font-semibold text-neutral-800 mb-5 shadow-2xs hover:scale-105 transition-transform cursor-default">
             <span className="w-2 h-2 rounded-full bg-blue-600 animate-ping" />
             <HelpCircle className="w-3.5 h-3.5 text-blue-600" />
-            <span className="font-semibold">COMMON QUESTIONS & ANSWERS</span>
+            <span>Common Questions & Answers</span>
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-950 mb-5 leading-[1.15]">
             Frequently Asked <br className="hidden sm:inline" />

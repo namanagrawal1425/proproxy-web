@@ -109,10 +109,10 @@ export default function ReviewsSection() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50/80 border border-blue-200/80 text-xs font-mono text-blue-900 mb-5 shadow-2xs hover:scale-105 transition-transform cursor-default">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50/80 border border-blue-200/80 text-xs font-sans font-semibold text-blue-900 mb-5 shadow-2xs hover:scale-105 transition-transform cursor-default">
             <span className="w-2 h-2 rounded-full bg-blue-600 animate-ping" />
             <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-            <span className="font-semibold">COMMUNITY VOICES & RATINGS</span>
+            <span>Community Voices & Ratings</span>
           </div>
 
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-950 mb-4 leading-[1.12]">
@@ -235,7 +235,7 @@ export default function ReviewsSection() {
                             <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                           ))}
                         </div>
-                        <span className="text-[11px] font-mono text-neutral-500">
+                        <span className="text-[11px] font-sans text-neutral-500 font-medium">
                           {review.platform}
                         </span>
                       </div>

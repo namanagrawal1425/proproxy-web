@@ -51,10 +51,10 @@ export default function HowItWorksSection() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-3xl mx-auto mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50/80 border border-emerald-200/80 text-xs font-mono text-emerald-900 mb-5 shadow-2xs hover:scale-105 transition-transform cursor-default">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50/80 border border-emerald-200/80 text-xs font-sans font-semibold text-emerald-900 mb-5 shadow-2xs hover:scale-105 transition-transform cursor-default">
             <span className="w-2 h-2 rounded-full bg-emerald-600 animate-ping" />
             <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
-            <span className="font-semibold">SMOOTH 4-STEP ONBOARDING</span>
+            <span>Smooth 4-Step Onboarding</span>
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-950 mb-5 leading-[1.15]">
             From Download to Lift-Off <br className="hidden sm:inline" />
@@ -94,7 +94,7 @@ export default function HowItWorksSection() {
                   <h3 className="font-display font-bold text-xl text-neutral-900 mb-1 group-hover:text-black">
                     {step.title}
                   </h3>
-                  <div className="text-xs font-mono text-blue-600 font-semibold mb-3 tracking-wide">
+                  <div className="text-xs font-sans text-blue-600 font-semibold mb-3">
                     {step.subtitle}
                   </div>
                   <p className="text-xs text-neutral-600 leading-relaxed font-normal">
@@ -102,7 +102,7 @@ export default function HowItWorksSection() {
                   </p>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-neutral-100 text-[11px] font-mono text-neutral-500 group-hover:text-neutral-900 transition-colors flex items-center justify-between">
+                <div className="mt-8 pt-4 border-t border-neutral-100 text-[11px] font-sans text-neutral-500 group-hover:text-neutral-900 transition-colors flex items-center justify-between">
                   <span className="font-medium">{step.detail}</span>
                   <span className="w-2 h-2 rounded-full bg-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>

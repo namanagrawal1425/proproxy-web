@@ -79,10 +79,10 @@ export default function FeaturesSection() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-3xl mx-auto mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-100/90 border border-neutral-200 text-xs font-mono text-neutral-800 mb-5 shadow-2xs hover:scale-105 transition-transform cursor-default">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-100/90 border border-neutral-200 text-xs font-sans font-semibold text-neutral-800 mb-5 shadow-2xs hover:scale-105 transition-transform cursor-default">
             <span className="w-2 h-2 rounded-full bg-blue-600 animate-ping" />
             <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-            <span className="font-medium">BUILT FOR DAILY SIMPLICITY</span>
+            <span>Built for Daily Simplicity</span>
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-950 mb-5 leading-[1.15]">
             Everything You Need. <br className="hidden sm:inline" />
@@ -114,7 +114,7 @@ export default function FeaturesSection() {
                     <div className="w-13 h-13 rounded-2xl bg-neutral-100 group-hover:bg-neutral-950 border border-neutral-200/80 flex items-center justify-center transition-all duration-300 group-hover:shadow-md group-hover:scale-105">
                       <Icon className="w-6 h-6 text-neutral-800 group-hover:text-white transition-all duration-300 group-hover:rotate-6" />
                     </div>
-                    <span className="text-[11px] font-mono px-3 py-1 rounded-full bg-neutral-100 group-hover:bg-neutral-200/80 text-neutral-700 border border-neutral-200 font-semibold tracking-wide transition-colors">
+                    <span className="text-[11px] font-sans px-3 py-1 rounded-full bg-neutral-100 group-hover:bg-neutral-200/80 text-neutral-700 border border-neutral-200 font-medium transition-colors">
                       {item.badge}
                     </span>
                   </div>
@@ -124,7 +124,7 @@ export default function FeaturesSection() {
                     <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 text-blue-600 transition-all -translate-x-2 group-hover:translate-x-0" />
                   </h3>
 
-                  <div className="text-xs font-mono text-blue-600 font-semibold mb-3 tracking-wide">
+                  <div className="text-xs font-sans text-blue-600 font-semibold mb-3">
                     {item.benefit}
                   </div>
 
@@ -133,7 +133,7 @@ export default function FeaturesSection() {
                   </p>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs font-mono text-neutral-500">
+                <div className="mt-8 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs font-sans text-neutral-500">
                   <span className="flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                     Windows Native

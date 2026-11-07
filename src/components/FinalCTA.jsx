@@ -18,10 +18,10 @@ export default function FinalCTA({ onDownloadClick, onGuideClick }) {
       >
         
         {/* Visual Pill */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50/80 border border-blue-200/80 text-xs font-mono text-blue-900 mb-8 shadow-2xs hover:scale-105 transition-transform cursor-default">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50/80 border border-blue-200/80 text-xs font-sans font-semibold text-blue-900 mb-8 shadow-2xs hover:scale-105 transition-transform cursor-default">
           <span className="w-2 h-2 rounded-full bg-blue-600 animate-ping" />
           <Zap className="w-3.5 h-3.5 text-blue-600" />
-          <span className="font-semibold">COMPLETE NETWORK FREEDOM</span>
+          <span>Complete Network Freedom</span>
         </div>
 
         {/* Closing Main Headline */}
@@ -56,7 +56,7 @@ export default function FinalCTA({ onDownloadClick, onGuideClick }) {
         </div>
 
         {/* Verification badges */}
-        <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-neutral-500">
+        <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-sans text-neutral-500 font-medium">
           <span className="flex items-center gap-1.5">
             <ShieldCheck className="w-4 h-4 text-emerald-600" /> 100% Standalone .exe
           </span>

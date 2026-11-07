@@ -63,10 +63,10 @@ export default function DownloadSection() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50/80 border border-blue-200/80 text-xs font-mono text-blue-900 mb-5 shadow-2xs hover:scale-105 transition-transform cursor-default">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50/80 border border-blue-200/80 text-xs font-sans font-semibold text-blue-900 mb-5 shadow-2xs hover:scale-105 transition-transform cursor-default">
             <span className="w-2 h-2 rounded-full bg-blue-600 animate-ping" />
             <Download className="w-3.5 h-3.5 text-blue-600" />
-            <span className="font-semibold">OFFICIAL DISTRIBUTION</span>
+            <span>Official Distribution</span>
           </div>
           <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-950 mb-5 leading-[1.12]">
             Ready for Lift-Off? <br />
@@ -91,7 +91,7 @@ export default function DownloadSection() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="p-8 rounded-3xl bg-white border-2 border-neutral-900 flex flex-col justify-between group shadow-xl hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.18)] relative overflow-hidden transition-all duration-300"
           >
-            <div className="absolute top-0 right-0 bg-neutral-900 text-white text-[10px] font-mono font-medium px-3.5 py-1 rounded-bl-xl tracking-wider uppercase">
+            <div className="absolute top-0 right-0 bg-neutral-900 text-white text-[11px] font-sans font-medium px-3.5 py-1 rounded-bl-xl tracking-tight">
               Recommended
             </div>
 
@@ -109,7 +109,7 @@ export default function DownloadSection() {
                 {downloads.windows.subtext}
               </p>
 
-              <div className="space-y-2 text-xs font-mono text-neutral-700 mb-8 bg-neutral-50 p-4 rounded-2xl border border-neutral-200/80">
+              <div className="space-y-2 text-xs font-sans text-neutral-700 mb-8 bg-neutral-50 p-4 rounded-2xl border border-neutral-200/80">
                 <div className="flex justify-between">
                   <span className="text-neutral-400">File:</span>
                   <span className="text-neutral-900 font-semibold">{downloads.windows.fileName}</span>
@@ -148,7 +148,7 @@ export default function DownloadSection() {
                 <div className="w-14 h-14 rounded-2xl bg-neutral-100 border border-neutral-200 flex items-center justify-center">
                   <Apple className="w-7 h-7 text-neutral-600" />
                 </div>
-                <span className="text-[11px] font-mono px-3 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-200 font-medium tracking-wide flex items-center gap-1.5">
+                <span className="text-[11px] font-sans px-3 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-200 font-medium tracking-wide flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                   Coming Soon
                 </span>
@@ -161,7 +161,7 @@ export default function DownloadSection() {
                 Apple Silicon (M1/M2/M3/M4) & Intel 64-bit
               </p>
 
-              <div className="space-y-2 text-xs font-mono text-neutral-500 mb-8 bg-neutral-50/60 p-4 rounded-2xl border border-neutral-200/60">
+              <div className="space-y-2 text-xs font-sans text-neutral-500 mb-8 bg-neutral-50/60 p-4 rounded-2xl border border-neutral-200/60">
                 <div className="flex justify-between">
                   <span className="text-neutral-400">Status:</span>
                   <span className="text-amber-600 font-medium">Under Active Development</span>
@@ -199,7 +199,7 @@ export default function DownloadSection() {
                 <div className="w-14 h-14 rounded-2xl bg-neutral-100 border border-neutral-200 flex items-center justify-center">
                   <Terminal className="w-7 h-7 text-neutral-600" />
                 </div>
-                <span className="text-[11px] font-mono px-3 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-200 font-medium tracking-wide flex items-center gap-1.5">
+                <span className="text-[11px] font-sans px-3 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-200 font-medium tracking-wide flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                   Coming Soon
                 </span>
@@ -212,7 +212,7 @@ export default function DownloadSection() {
                 AppImage / Tarball / Deb
               </p>
 
-              <div className="space-y-2 text-xs font-mono text-neutral-500 mb-8 bg-neutral-50/60 p-4 rounded-2xl border border-neutral-200/60">
+              <div className="space-y-2 text-xs font-sans text-neutral-500 mb-8 bg-neutral-50/60 p-4 rounded-2xl border border-neutral-200/60">
                 <div className="flex justify-between">
                   <span className="text-neutral-400">Status:</span>
                   <span className="text-amber-600 font-medium">Under Active Development</span>
@@ -249,7 +249,7 @@ export default function DownloadSection() {
         >
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-600 mb-2 font-medium">
+              <div className="inline-flex items-center gap-2 text-xs font-sans text-blue-600 mb-2 font-medium">
                 <Terminal className="w-4 h-4" />
                 <span>Headless CI/CD & Automated Scripts</span>
               </div>
@@ -267,7 +267,7 @@ export default function DownloadSection() {
               </code>
               <button
                 onClick={copyCliCommand}
-                className="px-3.5 py-2 rounded-xl bg-white hover:bg-neutral-50 text-xs font-mono text-neutral-900 border border-neutral-200 flex items-center gap-1.5 transition-colors cursor-pointer shrink-0 font-medium shadow-2xs"
+                className="px-3.5 py-2 rounded-xl bg-white hover:bg-neutral-50 text-xs font-sans text-neutral-900 border border-neutral-200 flex items-center gap-1.5 transition-colors cursor-pointer shrink-0 font-medium shadow-2xs"
               >
                 {copiedCmd ? (
                   <>
@@ -286,7 +286,7 @@ export default function DownloadSection() {
         </motion.div>
 
         {/* Guidance cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-neutral-600 font-mono">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-neutral-600 font-sans">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
