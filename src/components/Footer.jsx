@@ -44,15 +44,6 @@ export default function Footer({ onDownloadClick }) {
 
             <div className="flex items-center gap-3 pt-2">
               <a
-                href={PROPROXY_CONFIG.community.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-neutral-100 hover:bg-neutral-200 border border-neutral-200 flex items-center justify-center text-neutral-700 hover:text-black transition-colors"
-                aria-label="GitHub Repository"
-              >
-                <Code2 className="w-4 h-4 text-neutral-800" />
-              </a>
-              <a
                 href={PROPROXY_CONFIG.community.discord}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -85,7 +76,7 @@ export default function Footer({ onDownloadClick }) {
             <ul className="space-y-2.5">
               <li><a href="#tutorial" className="hover:text-black transition-colors">Video Tutorial</a></li>
               <li><a href={PROPROXY_CONFIG.tutorial.youtubeWatchUrl} target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors flex items-center gap-1">Watch on YouTube <ExternalLink className="w-2.5 h-2.5" /></a></li>
-              <li><a href={PROPROXY_CONFIG.community.github} target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">GitHub Repository</a></li>
+              <li><a href="#reviews" className="hover:text-black transition-colors">User Feedback</a></li>
               <li><a href="#faq" className="hover:text-black transition-colors">FAQ & Help</a></li>
             </ul>
           </div>
@@ -181,8 +172,8 @@ export default function Footer({ onDownloadClick }) {
 
           <div className="flex flex-wrap items-center gap-6 text-xs text-neutral-500">
             <a href="#hero" className="hover:text-neutral-900 transition-colors">About ProProxy</a>
-            <a href={PROPROXY_CONFIG.community.github} target="_blank" rel="noopener noreferrer" className="hover:text-neutral-900 transition-colors">GitHub</a>
             <a href="#reviews" className="hover:text-neutral-900 transition-colors">Reviews</a>
+            <a href="#download" onClick={onDownloadClick} className="hover:text-neutral-900 transition-colors">Download</a>
             <a href="#faq" className="hover:text-neutral-900 transition-colors">Privacy & Terms</a>
           </div>
         </div>
