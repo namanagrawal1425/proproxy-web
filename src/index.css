@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-primary: #2563eb;
+  --color-accent: #4f46e5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+/* Custom sleek light scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Typography Helpers */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Premium Light Glassmorphism */
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.glass-panel-light-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-light-hover:hover {
+  border-color: #94a3b8;
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Antigravity floating aura animations */
+@keyframes auraFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -20px) scale(1.06); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+.animate-aura-float {
+  animation: auraFloat 14s infinite ease-in-out;
+}
+
+/* Subtle Shimmer for Buttons */
+@keyframes shimmerWaveLight {
+  0% { transform: translateX(-150%); }
+  100% { transform: translateX(150%); }
+}
+
+.shimmer-btn-light {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-btn-light::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transform: translateX(-150%);
+  animation: shimmerWaveLight 3.5s infinite;
+}
+
+/* Radar pulse animation for network nodes */
+@keyframes nodePulse {
+  0% { transform: scale(0.9); opacity: 0.9; }
+  50% { transform: scale(1.6); opacity: 0.15; }
+  100% { transform: scale(0.9); opacity: 0.9; }
+}
+
+.animate-node-pulse {
+  animation: nodePulse 2.4s infinite ease-in-out;
+}

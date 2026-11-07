@@ -1,0 +1,15 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Vibrant multi-color gradient matching Google Antigravity arch ribbon -->
+    <linearGradient id="antigravityRainbow" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4285F4" />
+      <stop offset="28%" stop-color="#34A853" />
+      <stop offset="60%" stop-color="#FBBC05" />
+      <stop offset="100%" stop-color="#EA4335" />
+    </linearGradient>
+  </defs>
+  <!-- Stylized parabolic liftoff arch ribbon -->
+  <path d="M18 78 C24 50, 42 22, 50 22 C58 22, 76 50, 82 78 C74 72, 62 62, 50 62 C38 62, 26 72, 18 78 Z" fill="url(#antigravityRainbow)" />
+  <!-- Apex highlight dot -->
+  <circle cx="50" cy="22" r="5" fill="#4285F4" />
+</svg>
