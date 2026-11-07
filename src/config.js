@@ -23,7 +23,7 @@ export const PROPROXY_CONFIG = {
       fileSize: "35.1 MB",
       url: "/ProProxy.exe",
       isPrimary: true,
-      sha256: "9e3b48f88c83750529d2b86378cbffb79e2a39dd16",
+      sha256: "ba94f51a3a892380362a007fa6a1ef9d23cfae38adc9b2586d2ba7236e3255cb",
     },
   macSilicon: {
     platform: "macOS (Apple Silicon)",
