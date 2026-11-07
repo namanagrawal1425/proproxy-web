@@ -170,8 +170,6 @@ export default function HeroSection({ onDownloadClick, onGuideClick }) {
                 <span className="text-emerald-400 flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /> SERVICE ACTIVE
                 </span>
-                <span className="text-neutral-600">|</span>
-                <span className="text-cyan-400 font-semibold">0-KB ENGINE</span>
               </div>
             </div>
 
@@ -190,22 +188,6 @@ export default function HeroSection({ onDownloadClick, onGuideClick }) {
                 transition={{ repeat: Infinity, duration: 4.5, ease: 'linear' }}
                 className="absolute left-0 right-0 h-28 bg-gradient-to-b from-transparent via-cyan-400/10 to-transparent pointer-events-none opacity-60"
               />
-            </div>
-
-            {/* Bottom Status Bar */}
-            <div className="px-5 py-3 bg-neutral-900/95 border-t border-neutral-800 flex flex-wrap items-center justify-between text-[11px] font-sans font-medium text-neutral-400">
-              <div className="flex items-center gap-4">
-                <span className="flex items-center gap-1.5 text-emerald-400">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-node-pulse" />
-                  Active Node: MNNIT Main (172.31.100.27:3128)
-                </span>
-                <span className="hidden sm:inline text-neutral-600">•</span>
-                <span className="hidden sm:inline text-neutral-300">Campus Secure (97% Security Tier)</span>
-              </div>
-              <div className="text-cyan-400 flex items-center gap-1.5">
-                <Zap className="w-3.5 h-3.5" />
-                <span>Zero Latency Overhead</span>
-              </div>
             </div>
 
           </div>

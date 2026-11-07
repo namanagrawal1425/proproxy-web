@@ -161,7 +161,7 @@ export default function Footer({ onDownloadClick }) {
               v2.4 Core Engine
             </span>
             <span>•</span>
-            <span className="text-[11px] font-medium tracking-wide">Zero Latency Overhead</span>
+            <span className="text-[11px] font-medium tracking-wide">Zero Overhead Architecture</span>
             <span>•</span>
             <span className="text-[11px] font-medium tracking-wide">Instant WinINet Sync</span>
           </div>
