@@ -3,54 +3,67 @@ import React, { useState, useEffect } from 'react';
 /**
  * TypewriterText
  * Simulates real-time live typing ("likhte hue aaye"):
- * - Types character-by-character
- * - Pauses naturally at punctuation and line breaks
+ * - Supports dual-tone styling: solid dark prefix + vibrant gradient highlight
+ * - Types character-by-character with natural cadence
  * - Cycles through signature phrases seamlessly
- * - Features the iconic Google Antigravity blinking cursor
+ * - Features sleek blinking cursor matching the active theme
  */
-export default function TypewriterText({ phrases, typingSpeed = 65, pauseDuration = 2800 }) {
+export default function TypewriterText({ phrases, typingSpeed = 55, pauseDuration = 2800 }) {
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
-  const [displayedText, setDisplayedText] = useState('');
+  const [charCount, setCharCount] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+
+  // Normalize phrases into { prefix, highlight }
+  const currentItem = typeof phrases[currentPhraseIndex] === 'string'
+    ? { prefix: phrases[currentPhraseIndex], highlight: '' }
+    : phrases[currentPhraseIndex];
+
+  const prefix = currentItem?.prefix || '';
+  const highlight = currentItem?.highlight || '';
+  const fullText = prefix + highlight;
+  const prefixLen = prefix.length;
 
   useEffect(() => {
     let timeout;
-    const fullText = phrases[currentPhraseIndex];
 
     if (!isDeleting) {
-      // Typing forward
-      if (displayedText.length < fullText.length) {
+      if (charCount < fullText.length) {
         timeout = setTimeout(() => {
-          setDisplayedText(fullText.slice(0, displayedText.length + 1));
-        }, typingSpeed + (Math.random() * 25)); // slight human cadence variation
+          setCharCount((prev) => prev + 1);
+        }, typingSpeed + (Math.random() * 20));
       } else {
-        // Finished typing phrase, hold for pauseDuration
         timeout = setTimeout(() => {
           setIsDeleting(true);
         }, pauseDuration);
       }
     } else {
-      // Deleting back to type next phrase
-      if (displayedText.length > 0) {
+      if (charCount > 0) {
         timeout = setTimeout(() => {
-          setDisplayedText(fullText.slice(0, displayedText.length - 1));
+          setCharCount((prev) => prev - 1);
         }, typingSpeed / 2);
       } else {
-        // Move to next phrase
         setIsDeleting(false);
         setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
       }
     }
 
     return () => clearTimeout(timeout);
-  }, [displayedText, isDeleting, currentPhraseIndex, phrases, typingSpeed, pauseDuration]);
+  }, [charCount, isDeleting, currentPhraseIndex, fullText, phrases, typingSpeed, pauseDuration]);
+
+  const displayedPrefix = fullText.slice(0, Math.min(charCount, prefixLen));
+  const displayedHighlight = charCount > prefixLen ? fullText.slice(prefixLen, charCount) : '';
 
   return (
     <span className="inline-block relative">
-      <span>{displayedText}</span>
-      {/* Google Antigravity blinking cursor */}
+      <span className="text-neutral-950 font-bold">{displayedPrefix}</span>
+      {displayedHighlight && (
+        <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent font-bold">
+          {displayedHighlight}
+        </span>
+      )}
+      {/* Blinking cursor */}
       <span
-        className="inline-block w-[3px] sm:w-[4px] h-[0.9em] bg-neutral-900 align-middle ml-1 rounded-sm animate-pulse"
+        className="inline-block w-[3.5px] sm:w-[4.5px] h-[0.9em] bg-blue-600 align-middle ml-1.5 rounded-sm animate-pulse"
         style={{ animationDuration: '0.8s' }}
         aria-hidden="true"
       />

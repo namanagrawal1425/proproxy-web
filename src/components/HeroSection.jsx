@@ -51,12 +51,12 @@ export default function HeroSection({ onDownloadClick, onGuideClick }) {
     mouseY.set(0);
   }
 
-  // Phrases that type out live ("likhte hue aaye")
+  // Phrases that type out live with dual-tone bold & gradient styling
   const heroPhrases = [
-    "Experience liftoff with the next-gen proxy platform",
-    "Your Connection. Your Control. Total Autonomy.",
-    "Smart Proxy Optimizer (0-KB Speed & Security Engine)",
-    "Campus & Enterprise automated proxy failover",
+    { prefix: "Experience liftoff with ", highlight: "the next-gen proxy platform." },
+    { prefix: "Your Connection. Your Control. ", highlight: "Total Autonomy." },
+    { prefix: "Smart Proxy Optimizer. ", highlight: "Zero-Latency Engine." },
+    { prefix: "Campus & Enterprise ", highlight: "automated proxy failover." },
   ];
 
   return (
@@ -79,7 +79,7 @@ export default function HeroSection({ onDownloadClick, onGuideClick }) {
 
         {/* The Animated Typewriter Headline ("likhte hue aaye") */}
         <div className="min-h-[140px] sm:min-h-[175px] lg:min-h-[210px] flex items-center justify-center max-w-4xl mx-auto mb-8">
-          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-normal tracking-tight leading-[1.12] text-neutral-900 select-none">
+          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.12] text-neutral-950 select-none">
             <TypewriterText phrases={heroPhrases} typingSpeed={55} pauseDuration={3000} />
           </h1>
         </div>
