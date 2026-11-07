@@ -90,16 +90,27 @@ export default function Footer({ onDownloadClick }) {
 
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-neutral-400">
-          <div>
-            &copy; {currentYear} {PROPROXY_CONFIG.brand.name}. All rights reserved.
+        {/* Giant Oversized Brand Typography Wordmark (matching Antigravity footer) */}
+        <div className="w-full pt-16 sm:pt-24 pb-8 sm:pb-12 overflow-hidden flex items-center justify-center select-none pointer-events-none">
+          <h1 className="font-display font-medium text-[16.5vw] leading-[0.82] tracking-[-0.04em] text-neutral-900 text-center w-full whitespace-nowrap">
+            ProProxy
+          </h1>
+        </div>
+
+        {/* Bottom Bar matching Google footer bar */}
+        <div className="pt-8 border-t border-neutral-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 font-sans">
+          <div className="flex items-center gap-3">
+            <img src="/logo.png" alt="ProProxy Logo" className="w-6 h-6 rounded-md object-contain" />
+            <span className="font-display font-medium text-sm text-neutral-900">ProProxy</span>
+            <span className="text-neutral-300">•</span>
+            <span>&copy; {currentYear} {PROPROXY_CONFIG.brand.name}. All rights reserved.</span>
           </div>
-          <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5 text-neutral-500">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              100% Free & Open Portable Client
-            </span>
+
+          <div className="flex flex-wrap items-center gap-6 text-xs text-neutral-500">
+            <a href="#hero" className="hover:text-neutral-900 transition-colors">About ProProxy</a>
+            <a href={PROPROXY_CONFIG.community.github} target="_blank" rel="noopener noreferrer" className="hover:text-neutral-900 transition-colors">GitHub</a>
+            <a href="#reviews" className="hover:text-neutral-900 transition-colors">Reviews</a>
+            <a href="#faq" className="hover:text-neutral-900 transition-colors">Privacy & Terms</a>
           </div>
         </div>
 
