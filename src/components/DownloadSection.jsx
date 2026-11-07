@@ -3,19 +3,12 @@ import { motion } from 'framer-motion';
 import { 
   Download, 
   Monitor, 
-  Apple, 
-  Terminal, 
-  Check, 
-  Copy, 
-  ShieldCheck, 
-  FileText,
-  ExternalLink
+  Apple
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { PROPROXY_CONFIG } from '../config';
 
 export default function DownloadSection() {
-  const [copiedCmd, setCopiedCmd] = useState(false);
   const { downloads, brand } = PROPROXY_CONFIG;
 
   const handleDownloadTrigger = (platformKey, url, fileName) => {
@@ -236,99 +229,6 @@ export default function DownloadSection() {
             </button>
           </motion.div>
 
-        </div>
-
-        {/* Headless CLI & One-Liner Install */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          whileHover={{ y: -4 }}
-          transition={{ duration: 0.6 }}
-          className="p-7 sm:p-8 rounded-3xl bg-white border border-neutral-200/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_35px_rgba(0,0,0,0.07)] hover:border-neutral-300 transition-all mb-12"
-        >
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div>
-              <div className="inline-flex items-center gap-2 text-xs font-sans text-blue-600 mb-2 font-medium">
-                <Terminal className="w-4 h-4" />
-                <span>Headless CI/CD & Automated Scripts</span>
-              </div>
-              <h4 className="font-display text-xl font-medium text-neutral-900">
-                ProProxy CLI Daemon
-              </h4>
-              <p className="text-xs sm:text-sm text-neutral-600 mt-1 max-w-xl">
-                Run ProProxy headless on your workstation or automated scripts via native commands.
-              </p>
-            </div>
-
-            <div className="flex items-center gap-2 bg-neutral-100 p-2 rounded-2xl border border-neutral-200 w-full md:w-auto">
-              <code className="text-xs font-mono text-neutral-800 px-3 select-all overflow-x-auto">
-                {downloads.cli.command}
-              </code>
-              <button
-                onClick={copyCliCommand}
-                className="px-3.5 py-2 rounded-xl bg-white hover:bg-neutral-50 text-xs font-sans text-neutral-900 border border-neutral-200 flex items-center gap-1.5 transition-colors cursor-pointer shrink-0 font-medium shadow-2xs"
-              >
-                {copiedCmd ? (
-                  <>
-                    <Check className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>Copied</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-3.5 h-3.5 text-neutral-500" />
-                    <span>Copy</span>
-                  </>
-                )}
-              </button>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Guidance cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-neutral-600 font-sans">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -4 }}
-            className="p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-2xs hover:shadow-md transition-all"
-          >
-            <div className="text-neutral-900 font-bold mb-1 flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" /> Authenticity Verification
-            </div>
-            Direct standalone binary. Clean, isolated, and runs without background bloat.
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -4 }}
-            transition={{ delay: 0.08 }}
-            className="p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-2xs hover:shadow-md transition-all"
-          >
-            <div className="text-neutral-900 font-bold mb-1 flex items-center gap-1.5">
-              <FileText className="w-4 h-4 text-blue-600" /> Configurable Source
-            </div>
-            All download URLs & specifications are managed in <code className="text-blue-700 bg-neutral-100 px-1 py-0.5 rounded">src/config.js</code>.
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -4 }}
-            transition={{ delay: 0.16 }}
-            className="p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-2xs hover:shadow-md transition-all"
-          >
-            <div className="text-neutral-900 font-bold mb-1 flex items-center gap-1.5">
-              <ExternalLink className="w-4 h-4 text-indigo-600" /> GitHub Repository
-            </div>
-            <a href={PROPROXY_CONFIG.community.github} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-medium">
-              View official GitHub source code &rarr;
-            </a>
-          </motion.div>
         </div>
 
       </div>
