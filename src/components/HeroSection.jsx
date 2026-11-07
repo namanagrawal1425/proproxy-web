@@ -12,13 +12,25 @@ import {
   Cpu, 
   Lock,
   Maximize2,
-  Sparkles
+  Sparkles,
+  Check,
+  Wifi,
+  Sliders
 } from 'lucide-react';
 import TypewriterText from './TypewriterText';
 import { PROPROXY_CONFIG } from '../config';
 
 export default function HeroSection({ onDownloadClick, onGuideClick }) {
   const [isZoomed, setIsZoomed] = useState(false);
+  const [activeBadge, setActiveBadge] = useState(0);
+
+  const heroBadges = [
+    { id: 'all', label: 'All Features', icon: Check },
+    { id: 'ssid', label: 'Auto SSID Detection', icon: Wifi },
+    { id: 'registry', label: 'WinINet Registry Sync', icon: ShieldCheck },
+    { id: 'tray', label: 'System Tray Daemon', icon: Sliders },
+    { id: 'portable', label: '100% Free & Portable', icon: Sparkles },
+  ];
 
   // 3D Tilt Physics for real app screenshot
   const mouseX = useMotionValue(0);
@@ -96,22 +108,35 @@ export default function HeroSection({ onDownloadClick, onGuideClick }) {
           </button>
         </motion.div>
 
-        {/* Audience Hook: Live Benefit Badges */}
+        {/* Audience Hook: Live Benefit Pills (matching reference design) */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 text-xs font-mono text-neutral-600 mb-16"
+          className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-16"
         >
-          <span className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-neutral-100/80 border border-neutral-200 text-neutral-800 shadow-2xs">
-            <Zap className="w-3.5 h-3.5 text-blue-600" /> Auto SSID Detection
-          </span>
-          <span className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-neutral-100/80 border border-neutral-200 text-neutral-800 shadow-2xs">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> WinINet Registry Sync
-          </span>
-          <span className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-neutral-100/80 border border-neutral-200 text-neutral-800 shadow-2xs">
-            <Sparkles className="w-3.5 h-3.5 text-amber-600" /> 100% Free & Portable
-          </span>
+          {heroBadges.map((badge, idx) => {
+            const Icon = badge.icon;
+            const isActive = activeBadge === idx;
+            return (
+              <button
+                key={badge.id}
+                onClick={() => setActiveBadge(idx)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full font-sans text-xs sm:text-[13px] font-medium transition-all duration-200 cursor-pointer ${
+                  isActive
+                    ? 'bg-neutral-950 text-white border border-neutral-950 shadow-xs'
+                    : 'bg-white text-neutral-700 hover:text-neutral-950 border border-neutral-200/90 hover:border-neutral-300 hover:bg-neutral-50/90 shadow-[0_1px_2px_rgba(0,0,0,0.03)]'
+                }`}
+              >
+                {isActive ? (
+                  <Check className="w-3.5 h-3.5 text-white stroke-[2.5]" />
+                ) : (
+                  <Icon className="w-3.5 h-3.5 text-neutral-500" />
+                )}
+                <span>{badge.label}</span>
+              </button>
+            );
+          })}
         </motion.div>
 
         {/* Actual ProProxy Application UI with 3D Tilt & Floating Shimmer Animation */}
