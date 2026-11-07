@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, ShieldCheck, Code2, MessageCircle } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { PROPROXY_CONFIG } from '../config';
 
 export default function Footer({ onDownloadClick }) {
@@ -41,18 +41,6 @@ export default function Footer({ onDownloadClick }) {
             <p className="text-neutral-500 text-xs leading-relaxed max-w-sm">
               Smart proxy optimizer and automated network switcher for Windows. Fast, silent, and battery-friendly.
             </p>
-
-            <div className="flex items-center gap-3 pt-2">
-              <a
-                href={PROPROXY_CONFIG.community.discord}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-neutral-100 hover:bg-neutral-200 border border-neutral-200 flex items-center justify-center text-neutral-700 hover:text-black transition-colors"
-                aria-label="Discord Community"
-              >
-                <MessageCircle className="w-4 h-4 text-neutral-800" />
-              </a>
-            </div>
           </div>
 
           {/* Links Column 1: Product */}
