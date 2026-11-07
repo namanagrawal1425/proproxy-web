@@ -20,7 +20,7 @@ export const PROPROXY_CONFIG = {
       platform: "Windows",
       subtext: "Windows 10 / 11 (64-bit & ARM64)",
       fileName: "ProProxy.exe",
-      fileSize: "34.5 MB",
+      fileSize: "35.1 MB",
       url: "/ProProxy.exe",
       isPrimary: true,
       sha256: "9e3b48f88c83750529d2b86378cbffb79e2a39dd16",
