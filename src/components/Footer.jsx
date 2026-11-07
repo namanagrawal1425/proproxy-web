@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { ExternalLink, ShieldCheck, Code2, MessageCircle } from 'lucide-react';
 import { PROPROXY_CONFIG } from '../config';
 
 export default function Footer({ onDownloadClick }) {
   const currentYear = new Date().getFullYear();
+  const [isHovered, setIsHovered] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  const letters = ["P", "r", "o", "P", "r", "o", "x", "y"];
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
 
   return (
     <footer className="bg-white border-t border-neutral-200 text-neutral-600 text-xs font-sans pt-16 pb-12">
@@ -90,11 +103,68 @@ export default function Footer({ onDownloadClick }) {
 
         </div>
 
-        {/* Giant Oversized Brand Typography Wordmark (matching Antigravity footer) */}
-        <div className="w-full pt-16 sm:pt-24 pb-8 sm:pb-12 overflow-hidden flex items-center justify-center select-none pointer-events-none">
-          <h1 className="font-display font-medium text-[16.5vw] leading-[0.82] tracking-[-0.04em] text-neutral-900 text-center w-full whitespace-nowrap">
-            ProProxy
-          </h1>
+        {/* Giant Creative Interactive Brand Typography Wordmark */}
+        <div 
+          onMouseMove={handleMouseMove}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="relative w-full pt-16 sm:pt-24 pb-8 sm:pb-12 overflow-hidden flex flex-col items-center justify-center select-none group cursor-pointer"
+        >
+          {/* Dynamic Reactive Cursor Backlight Glow */}
+          <div 
+            className="absolute w-[460px] h-[220px] rounded-full bg-gradient-to-r from-blue-400/25 via-indigo-500/20 to-emerald-400/20 blur-3xl pointer-events-none transition-opacity duration-500"
+            style={{
+              left: mousePos.x - 230,
+              top: mousePos.y - 110,
+              opacity: isHovered ? 1 : 0.3,
+            }}
+          />
+
+          {/* Top Tech Status Ribbon */}
+          <div className="flex items-center gap-3 text-[11px] font-sans font-semibold tracking-widest uppercase text-neutral-400 group-hover:text-blue-600 transition-colors mb-3">
+            <span className="w-8 h-[1px] bg-neutral-200 group-hover:bg-blue-300 transition-colors" />
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Autonomous Proxy Platform
+            </span>
+            <span className="w-8 h-[1px] bg-neutral-200 group-hover:bg-blue-300 transition-colors" />
+          </div>
+
+          {/* Giant Staggered Bouncing & Gradient Reactive Letters */}
+          <div className="flex items-center justify-center tracking-[-0.04em] font-display font-bold text-[16.5vw] leading-[0.82] w-full text-center relative z-10">
+            {letters.map((char, index) => {
+              const isSecondWord = index >= 3;
+              return (
+                <motion.span
+                  key={index}
+                  whileHover={{ 
+                    y: -22, 
+                    scale: 1.12, 
+                    rotate: (index % 2 === 0 ? -4 : 4),
+                    transition: { type: "spring", stiffness: 350, damping: 14 }
+                  }}
+                  className={`inline-block transition-all duration-300 ${
+                    isSecondWord 
+                      ? 'bg-gradient-to-b from-neutral-950 via-neutral-800 to-neutral-600 group-hover:from-blue-600 group-hover:via-indigo-600 group-hover:to-violet-600 bg-clip-text text-transparent drop-shadow-sm'
+                      : 'text-neutral-950 group-hover:text-neutral-900'
+                  }`}
+                >
+                  {char}
+                </motion.span>
+              );
+            })}
+          </div>
+
+          {/* Bottom Futuristic Telemetry Ribbon */}
+          <div className="flex items-center gap-3 text-xs font-sans text-neutral-400 mt-4 group-hover:text-neutral-600 transition-colors">
+            <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-neutral-100 group-hover:bg-blue-50 group-hover:text-blue-700 group-hover:border-blue-200 border border-neutral-200/80 transition-all font-medium">
+              v2.4 Core Engine
+            </span>
+            <span>•</span>
+            <span className="text-[11px] font-medium tracking-wide">Zero Latency Overhead</span>
+            <span>•</span>
+            <span className="text-[11px] font-medium tracking-wide">Instant WinINet Sync</span>
+          </div>
         </div>
 
         {/* Bottom Bar matching Google footer bar */}
