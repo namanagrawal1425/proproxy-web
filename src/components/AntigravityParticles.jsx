@@ -1,13 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 
 /**
- * AntigravityParticles
- * Pixel-accurate recreation of the premium Google Antigravity background:
- * - Chromatic vertical spectrum: Electric Sapphire Blues at top -> Violets/Indigos in mid -> Ruby Roses/Magentas at bottom
- * - Sparse, ultra-clean density with breathing room
- * - Aerodynamic diagonal capsule dash geometry (~-45° tilt) with micro-specks for depth
- * - Excludes central typography zone (particles frame the sides & edges)
- * - Fluid mouse-hover repulsion physics with spring recovery
+ * AntigravityParticles (Cursor Spotlight Mode)
+ * - Particles ONLY appear within a designated radius around the mouse cursor
+ * - Zero particles on the rest of the screen (100% clean canvas elsewhere)
+ * - Features the exact diagonal dash geometry & chromatic gradient (Blue -> Violet -> Rose)
+ * - Smooth radial falloff (fade out at radius perimeter)
+ * - Interactive repulsion & buoyant liftoff around cursor
  */
 export default function AntigravityParticles() {
   const canvasRef = useRef(null);
@@ -22,66 +21,72 @@ export default function AntigravityParticles() {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
+    // The radius around the mouse where particles exist
+    const CURSOR_RADIUS = 210;
+
     // Mouse Tracking State
     const mouse = {
       x: -1000,
       y: -1000,
-      radius: 160,
+      prevX: -1000,
+      prevY: -1000,
+      vx: 0,
+      vy: 0,
       isHovering: false,
     };
 
-    // Sophisticated Color Interpolation based on vertical screen Y
-    // Matches the exact gradient seen in the reference photo:
-    // Top (Blue) -> Mid (Violet/Purple) -> Bottom (Rose/Magenta)
-    const getColorForY = (y) => {
-      const t = Math.max(0, Math.min(1, y / height));
-      if (t < 0.40) {
-        // Upper third: Royal Sapphire & Electric Blues
-        const blues = ['#2563EB', '#3B82F6', '#1D4ED8', '#4F46E5', '#38BDF8'];
-        return blues[Math.floor(Math.random() * blues.length)];
-      } else if (t < 0.72) {
-        // Middle third: Elegant Violets, Indigos & Magentas
-        const purples = ['#7C3AED', '#8B5CF6', '#9333EA', '#A855F7', '#C084FC'];
-        return purples[Math.floor(Math.random() * purples.length)];
+    // Color Palette matching reference photo (Blues -> Violets -> Roses)
+    const PALETTE = [
+      '#2563EB', // Sapphire Blue
+      '#3B82F6', // Electric Blue
+      '#4F46E5', // Indigo
+      '#7C3AED', // Deep Violet
+      '#8B5CF6', // Purple
+      '#A855F7', // Magenta Purple
+      '#E11D48', // Ruby Rose
+      '#F43F5E', // Coral Rose
+    ];
+
+    const getColorForOffset = (relY) => {
+      // relY ranges from -CURSOR_RADIUS (top of circle) to +CURSOR_RADIUS (bottom)
+      const ratio = (relY + CURSOR_RADIUS) / (CURSOR_RADIUS * 2);
+      if (ratio < 0.38) {
+        return PALETTE[Math.floor(Math.random() * 3)]; // Blues
+      } else if (ratio < 0.72) {
+        return PALETTE[3 + Math.floor(Math.random() * 3)]; // Violets
       } else {
-        // Lower third: Deep Rose, Crimson & Coral Magentas
-        const roses = ['#E11D48', '#BE123C', '#F43F5E', '#FB7185', '#E11D48'];
-        return roses[Math.floor(Math.random() * roses.length)];
+        return PALETTE[6 + Math.floor(Math.random() * 2)]; // Roses
       }
     };
 
-    // Sparse, premium particle count (60-95 particles total)
-    const COUNT = Math.min(Math.max(Math.floor((width * height) / 14000), 55), 90);
+    // Number of particles localized around the mouse cursor
+    const LOCAL_PARTICLE_COUNT = 36;
     const particles = [];
 
-    class Particle {
-      constructor(randomY = true) {
-        this.init(randomY);
+    class LocalParticle {
+      constructor() {
+        this.respawn(true);
       }
 
-      init(randomY = false) {
-        // Bias distribution toward left & right flanks (framing the page, leaving text clear)
-        const isLeft = Math.random() < 0.5;
-        if (isLeft) {
-          this.x = Math.random() * (width * 0.38);
-        } else {
-          this.x = width - Math.random() * (width * 0.38);
-        }
+      respawn(randomDist = false) {
+        // Spawn within cursor circle
+        const angle = Math.random() * Math.PI * 2;
+        const dist = randomDist
+          ? Math.random() * CURSOR_RADIUS * 0.95
+          : CURSOR_RADIUS * (0.3 + Math.random() * 0.65);
 
-        this.y = randomY ? Math.random() * height : height + 15 + Math.random() * 30;
+        this.x = mouse.x + Math.cos(angle) * dist;
+        this.y = mouse.y + Math.sin(angle) * dist;
 
-        // Color dynamically tied to vertical level
-        this.color = getColorForY(this.y);
+        const relY = this.y - mouse.y;
+        this.color = getColorForOffset(relY);
 
-        // Slow, serene upward drift
-        this.baseVx = 0.08 + Math.random() * 0.18;
-        this.baseVy = -(0.25 + Math.random() * 0.45);
+        // Gentle buoyant drift
+        this.vx = (Math.random() - 0.5) * 0.6;
+        this.vy = -(0.4 + Math.random() * 0.8);
 
-        this.vx = this.baseVx;
-        this.vy = this.baseVy;
-
-        // Size: precise slim capsules & micro specks
-        const isDot = Math.random() < 0.22;
+        // Diagonal capsule dash geometry (~-45° tilt)
+        const isDot = Math.random() < 0.25;
         if (isDot) {
           this.length = 2.5 + Math.random() * 1.5;
           this.thickness = 2;
@@ -90,69 +95,60 @@ export default function AntigravityParticles() {
           this.thickness = 1.8 + Math.random() * 0.8;
         }
 
-        // Aerodynamic diagonal angle matching the reference (~-45° upward-forward tilt)
         this.targetAngle = -0.75 + (Math.random() - 0.5) * 0.35;
         this.angle = this.targetAngle;
-        this.angularVelocity = 0;
-
-        // Opacity
-        this.opacity = 0.55 + Math.random() * 0.4;
+        this.baseAlpha = 0.65 + Math.random() * 0.35;
       }
 
       update() {
-        // Dynamic color transition as particle moves vertically
-        this.color = getColorForY(this.y);
+        if (!mouse.isHovering) return;
 
-        // --- MOUSE HOVER REPULSION PHYSICS ---
-        if (mouse.isHovering) {
-          const dx = this.x - mouse.x;
-          const dy = this.y - mouse.y;
-          const dist = Math.hypot(dx, dy);
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const dist = Math.hypot(dx, dy);
 
-          if (dist < mouse.radius && dist > 1) {
-            const normal = 1 - dist / mouse.radius;
-            // Smooth quadratic repulsion kick
-            const force = Math.pow(normal, 1.8) * 4.5;
-            const angleFromMouse = Math.atan2(dy, dx);
-
-            this.vx += Math.cos(angleFromMouse) * force;
-            this.vy += Math.sin(angleFromMouse) * force;
-
-            // Tilt particle dynamically away from mouse impact
-            this.angle += (angleFromMouse - this.angle) * 0.12;
-          }
+        // If particle leaves the cursor radius, respawn it inside the active aura
+        if (dist > CURSOR_RADIUS + 10) {
+          this.respawn(false);
+          return;
         }
 
-        // Central text exclusion: gently nudge away from middle reading column
-        const centerX = width / 2;
-        const centerY = height * 0.40;
-        const dxCenter = this.x - centerX;
-        const dyCenter = (this.y - centerY) * 1.4;
-        const distCenter = Math.hypot(dxCenter, dyCenter);
-        if (distCenter < 240) {
-          const push = (1 - distCenter / 240) * 0.4;
-          this.vx += (dxCenter > 0 ? push : -push);
+        // Inner core repulsion: keep the exact mouse point clear
+        if (dist < 45 && dist > 1) {
+          const push = (1 - dist / 45) * 2.5;
+          const pushAngle = Math.atan2(dy, dx);
+          this.vx += Math.cos(pushAngle) * push;
+          this.vy += Math.sin(pushAngle) * push;
         }
 
-        // Spring friction: smoothly return to base calm velocity
-        this.vx = this.vx * 0.94 + this.baseVx * 0.06;
-        this.vy = this.vy * 0.94 + this.baseVy * 0.06;
+        // Slight drag along mouse stroke
+        this.vx += mouse.vx * 0.04;
+        this.vy += mouse.vy * 0.04;
+
+        // Friction & drift
+        this.vx *= 0.93;
+        this.vy *= 0.94;
+        this.vy -= 0.08; // upward antigravity lift
 
         this.x += this.vx;
         this.y += this.vy;
 
-        // Return angle back to aerodynamic diagonal orientation
         this.angle += (this.targetAngle - this.angle) * 0.05;
-
-        // Wrap around viewport edges
-        if (this.y < -25) {
-          this.init(false);
-        }
-        if (this.x < -25) this.x = width + 15;
-        if (this.x > width + 25) this.x = -15;
       }
 
       draw() {
+        if (!mouse.isHovering) return;
+
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const dist = Math.hypot(dx, dy);
+
+        if (dist > CURSOR_RADIUS) return;
+
+        // Smooth radial edge falloff (alpha fades to 0 at perimeter)
+        const edgeFade = Math.sin((1 - dist / CURSOR_RADIUS) * (Math.PI / 2));
+        const finalAlpha = Math.max(0, Math.min(1, this.baseAlpha * edgeFade));
+
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.angle);
@@ -163,22 +159,26 @@ export default function AntigravityParticles() {
         ctx.roundRect(-l / 2, -r, l, this.thickness, r);
 
         ctx.fillStyle = this.color;
-        ctx.globalAlpha = this.opacity;
+        ctx.globalAlpha = finalAlpha;
         ctx.fill();
 
         ctx.restore();
       }
     }
 
-    // Populate initial particle layout
-    for (let i = 0; i < COUNT; i++) {
-      particles.push(new Particle(true));
+    // Initialize local particle pool
+    for (let i = 0; i < LOCAL_PARTICLE_COUNT; i++) {
+      particles.push(new LocalParticle());
     }
 
-    // Event Listeners
+    // Mouse Listeners
     const handleMouseMove = (e) => {
+      mouse.vx = e.clientX - mouse.prevX;
+      mouse.vy = e.clientY - mouse.prevY;
       mouse.x = e.clientX;
       mouse.y = e.clientY;
+      mouse.prevX = e.clientX;
+      mouse.prevY = e.clientY;
       mouse.isHovering = true;
     };
 
@@ -201,9 +201,11 @@ export default function AntigravityParticles() {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
+      if (mouse.isHovering) {
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+          particles[i].draw();
+        }
       }
 
       animationFrameId = requestAnimationFrame(render);
