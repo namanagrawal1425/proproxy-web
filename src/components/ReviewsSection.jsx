@@ -224,20 +224,15 @@ export default function ReviewsSection() {
                       </div>
                     </div>
 
-                    {/* Name & Role & Rating */}
+                    {/* Name & Rating */}
                     <div>
                       <div className="font-display font-semibold text-base text-neutral-900 leading-tight">
                         {review.name}
                       </div>
-                      <div className="flex items-center gap-2 mt-1">
-                        <div className="flex items-center text-amber-400">
-                          {[...Array(review.rating)].map((_, i) => (
-                            <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                          ))}
-                        </div>
-                        <span className="text-[11px] font-sans text-neutral-500 font-medium">
-                          {review.role}
-                        </span>
+                      <div className="flex items-center text-amber-400 mt-1">
+                        {[...Array(review.rating)].map((_, i) => (
+                          <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                        ))}
                       </div>
                     </div>
                   </div>
