@@ -1,4 +1,5 @@
 import React from 'react';
+import AntigravityParticles from './components/AntigravityParticles';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import FeaturesSection from './components/FeaturesSection';
@@ -29,6 +30,9 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-white text-neutral-900 flex flex-col selection:bg-neutral-900 selection:text-white font-sans overflow-x-hidden">
       
+      {/* Interactive Google Antigravity Mouse-Hover Reactive Particle Field */}
+      <AntigravityParticles />
+
       {/* Clean Adaptive Navigation */}
       <Navbar onDownloadClick={scrollToDownload} />
 

@@ -2,12 +2,14 @@ import React, { useEffect, useRef } from 'react';
 
 /**
  * AntigravityParticles
- * Recreates the exact Google Antigravity liftoff particle field:
- * - Parabolic / upward-bursting trajectory
- * - Multi-colored oriented pill/dash particles (Blue, Red, Yellow, Green, Purple, Cyan)
- * - Clear central zone for typography readability
- * - Interactive mouse repulsion & turbulence
- * - Continuous 60fps infinite animation loop that never halts
+ * Exact recreation of Google Antigravity (antigravity.google) particle field:
+ * - Multi-colored oriented pill/dash capsules (Google Blue, Red, Yellow, Green, Purple, Orange)
+ * - Calms to near-stillness when idle (no spammy confetti)
+ * - ACTIVATES ON MOUSE HOVER & CURSOR MOVEMENT:
+ *   - Strong dynamic repulsion & momentum transfer on mouse pass
+ *   - Spawns elegant liftoff particle trail following cursor movement
+ *   - Fluid spring-like physics with friction damping and angle rotation
+ *   - Central hero readability exclusion
  */
 export default function AntigravityParticles() {
   const canvasRef = useRef(null);
@@ -22,98 +24,133 @@ export default function AntigravityParticles() {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Multi-color palette matching Google Antigravity liftoff branding
+    // Exact Google Antigravity Brand Palette
     const PALETTE = [
-      '#4285F4', // Google Blue
-      '#EA4335', // Google Red
-      '#FBBC05', // Google Yellow
-      '#34A853', // Google Green
-      '#8B5CF6', // Vivid Violet
-      '#06B6D4', // Electric Cyan
-      '#EC4899', // Pink Accent
+      '#4285F4', // Blue
+      '#EA4335', // Red
+      '#FBBC05', // Yellow
+      '#34A853', // Green
+      '#9333EA', // Purple
+      '#F97316', // Orange
     ];
 
+    // Mouse Tracking with Velocity & Activity State
     const mouse = {
-      x: width / 2,
-      y: height / 2,
-      radius: 120,
-      active: false,
+      x: -1000,
+      y: -1000,
+      prevX: -1000,
+      prevY: -1000,
+      vx: 0,
+      vy: 0,
+      speed: 0,
+      radius: 170,
+      isHovering: false,
+      lastMoveTime: 0,
     };
 
-    // Responsive particle count
-    const particleCount = Math.min(Math.max(Math.floor((width * height) / 4500), 160), 320);
+    // Ambient floating particles count
+    const BASE_PARTICLE_COUNT = Math.min(Math.max(Math.floor((width * height) / 8000), 75), 140);
     const particles = [];
+    const trailParticles = [];
 
     class Particle {
-      constructor() {
+      constructor(isAmbient = true) {
+        this.isAmbient = isAmbient;
         this.init(true);
       }
 
-      init(randomY = false) {
-        // Particles form a parabolic / V-shaped dispersion expanding outwards and upwards
+      init(randomInit = false) {
         this.color = PALETTE[Math.floor(Math.random() * PALETTE.length)];
         
-        // Horizontal position distributed around center
-        const spreadFactor = (Math.random() - 0.5) * 2;
-        this.x = width / 2 + spreadFactor * (width * 0.45);
-        
-        if (randomY) {
+        if (randomInit) {
+          this.x = Math.random() * width;
           this.y = Math.random() * height;
         } else {
-          // Spawn near bottom or middle-lower zone
-          this.y = height + Math.random() * 40;
+          // Respawn from edges
+          if (Math.random() > 0.5) {
+            this.x = Math.random() * width;
+            this.y = height + 15;
+          } else {
+            this.x = Math.random() > 0.5 ? -15 : width + 15;
+            this.y = Math.random() * height;
+          }
         }
 
-        // Velocity vector: upward drift with outward spread
-        const outward = (this.x - width / 2) / (width / 2);
-        this.vx = outward * (0.8 + Math.random() * 1.4) + (Math.random() - 0.5) * 0.5;
-        this.vy = -(1.2 + Math.random() * 2.2);
+        // Ambient idle velocity: very slow, gentle drift (calm background)
+        this.baseVx = (Math.random() - 0.5) * 0.25;
+        this.baseVy = -0.15 - Math.random() * 0.25;
+        
+        // Active dynamic impulse velocities (imparted by mouse hover)
+        this.vx = this.baseVx;
+        this.vy = this.baseVy;
 
-        // Particle dimensions: Dash / Pill style
-        this.length = 6 + Math.random() * 8;
-        this.thickness = 2.2 + Math.random() * 1.6;
-        this.opacity = 0.4 + Math.random() * 0.55;
+        // Pill / Capsule dimensions matching antigravity.google
+        this.length = 6 + Math.random() * 7;
+        this.thickness = 2.2 + Math.random() * 1.2;
+        this.opacity = 0.35 + Math.random() * 0.45;
         this.baseOpacity = this.opacity;
 
-        // Angle aligned with velocity
+        // Orientation
         this.angle = Math.atan2(this.vy, this.vx);
-        this.spin = (Math.random() - 0.5) * 0.02;
+        this.rotSpeed = (Math.random() - 0.5) * 0.015;
+        this.friction = 0.94;
       }
 
       update() {
-        // Continuous upward liftoff drift
-        this.x += this.vx;
-        this.y += this.vy;
-        this.angle += this.spin;
-
-        // Gentle central repulsion to keep main text readable
-        const centerX = width / 2;
-        const centerY = height * 0.38;
-        const distFromCenter = Math.hypot(this.x - centerX, (this.y - centerY) * 1.4);
-        if (distFromCenter < 240) {
-          const pushAngle = Math.atan2(this.y - centerY, this.x - centerX);
-          this.x += Math.cos(pushAngle) * 1.5;
-          this.y += Math.sin(pushAngle) * 1.2;
-        }
-
-        // Interactive mouse disturbance
-        if (mouse.active) {
+        // --- 1. MOUSE HOVER INTERACTION (The core physics) ---
+        if (mouse.isHovering) {
           const dx = this.x - mouse.x;
           const dy = this.y - mouse.y;
           const dist = Math.hypot(dx, dy);
 
-          if (dist < mouse.radius) {
-            const force = (1 - dist / mouse.radius) * 4;
-            const angle = Math.atan2(dy, dx);
-            this.x += Math.cos(angle) * force;
-            this.y += Math.sin(angle) * force;
+          if (dist < mouse.radius && dist > 1) {
+            const normalDist = 1 - dist / mouse.radius;
+            // Strong kinetic kick combining proximity + mouse stroke speed
+            const kickForce = normalDist * (3.8 + Math.min(mouse.speed * 0.22, 6));
+            const angleFromMouse = Math.atan2(dy, dx);
+
+            // Push particle outward away from cursor
+            this.vx += Math.cos(angleFromMouse) * kickForce;
+            this.vy += Math.sin(angleFromMouse) * kickForce;
+
+            // Also add directional drag along mouse movement vector
+            this.vx += mouse.vx * 0.12 * normalDist;
+            this.vy += mouse.vy * 0.12 * normalDist;
+
+            // Align rotation with velocity
+            this.angle = Math.atan2(this.vy, this.vx);
+            this.rotSpeed = (Math.random() - 0.5) * 0.15;
           }
         }
 
-        // Recycle particle once it exits viewport
-        if (this.y < -30 || this.x < -40 || this.x > width + 40) {
-          this.init(false);
+        // --- 2. Gentle Central Text Area Protection (Keep content legible) ---
+        const cx = width / 2;
+        const cy = height * 0.38;
+        const distFromCenter = Math.hypot(this.x - cx, (this.y - cy) * 1.5);
+        if (distFromCenter < 200) {
+          const repulseAngle = Math.atan2(this.y - cy, this.x - cx);
+          this.vx += Math.cos(repulseAngle) * 0.3;
+          this.vy += Math.sin(repulseAngle) * 0.3;
         }
+
+        // --- 3. Friction Damping back to calm ambient drift ---
+        this.vx = this.vx * this.friction + this.baseVx * (1 - this.friction);
+        this.vy = this.vy * this.friction + this.baseVy * (1 - this.friction);
+
+        this.x += this.vx;
+        this.y += this.vy;
+        this.angle += this.rotSpeed;
+        this.rotSpeed *= 0.98;
+
+        // --- 4. Boundary Wrap ---
+        if (this.y < -30) {
+          this.y = height + 20;
+          this.x = Math.random() * width;
+        } else if (this.y > height + 30) {
+          this.y = -20;
+        }
+        if (this.x < -30) this.x = width + 20;
+        else if (this.x > width + 30) this.x = -20;
       }
 
       draw() {
@@ -122,52 +159,140 @@ export default function AntigravityParticles() {
         ctx.rotate(this.angle);
 
         ctx.beginPath();
-        // Draw capsule / rounded dash
         const r = this.thickness / 2;
         const l = this.length;
         ctx.roundRect(-l / 2, -r, l, this.thickness, r);
 
         ctx.fillStyle = this.color;
         ctx.globalAlpha = this.opacity;
-        ctx.shadowColor = this.color;
-        ctx.shadowBlur = 4;
         ctx.fill();
 
         ctx.restore();
       }
     }
 
-    // Populate initial particle swarm
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
+    // Dynamic Trail Particles spawned strictly when mouse moves
+    class TrailParticle {
+      constructor(x, y, vx, vy) {
+        this.x = x + (Math.random() - 0.5) * 16;
+        this.y = y + (Math.random() - 0.5) * 16;
+        this.color = PALETTE[Math.floor(Math.random() * PALETTE.length)];
+        
+        // Spawn with kinetic velocity bursting outward and floating up
+        const spread = (Math.random() - 0.5) * 2.5;
+        this.vx = vx * 0.25 + spread;
+        this.vy = vy * 0.25 - (1.2 + Math.random() * 2.2);
+
+        this.length = 5 + Math.random() * 6;
+        this.thickness = 2 + Math.random() * 1.2;
+        this.angle = Math.atan2(this.vy, this.vx);
+        this.rotSpeed = (Math.random() - 0.5) * 0.12;
+
+        this.life = 1.0;
+        this.decay = 0.016 + Math.random() * 0.018; // Fades out in ~1-1.5s
+      }
+
+      update() {
+        this.vx *= 0.95;
+        this.vy *= 0.96;
+        this.x += this.vx;
+        this.y += this.vy;
+        this.angle += this.rotSpeed;
+        this.life -= this.decay;
+      }
+
+      draw() {
+        if (this.life <= 0) return;
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+
+        ctx.beginPath();
+        const r = this.thickness / 2;
+        const l = this.length;
+        ctx.roundRect(-l / 2, -r, l, this.thickness, r);
+
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = Math.max(0, this.life * 0.85);
+        ctx.fill();
+
+        ctx.restore();
+      }
     }
+
+    // Initialize calm ambient particles
+    for (let i = 0; i < BASE_PARTICLE_COUNT; i++) {
+      particles.push(new Particle(true));
+    }
+
+    // Mouse Event Listeners
+    let lastSpawn = 0;
+    const handleMouseMove = (e) => {
+      const now = performance.now();
+      const dx = e.clientX - mouse.prevX;
+      const dy = e.clientY - mouse.prevY;
+      const speed = Math.hypot(dx, dy);
+
+      mouse.vx = dx;
+      mouse.vy = dy;
+      mouse.speed = speed;
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      mouse.prevX = e.clientX;
+      mouse.prevY = e.clientY;
+      mouse.isHovering = true;
+      mouse.lastMoveTime = now;
+
+      // Spawn liftoff trail particles only when cursor moves with noticeable velocity
+      if (speed > 2.5 && now - lastSpawn > 28 && trailParticles.length < 60) {
+        lastSpawn = now;
+        const spawnCount = speed > 15 ? 2 : 1;
+        for (let s = 0; s < spawnCount; s++) {
+          trailParticles.push(new TrailParticle(mouse.x, mouse.y, dx, dy));
+        }
+      }
+    };
+
+    const handleMouseLeave = () => {
+      mouse.isHovering = false;
+      mouse.x = -1000;
+      mouse.y = -1000;
+    };
 
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
     };
 
-    const handleMouseMove = (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-      mouse.active = true;
-    };
-
-    const handleMouseLeave = () => {
-      mouse.active = false;
-    };
-
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     document.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('resize', handleResize);
 
-    // Continuous 60fps infinite animation loop (Never stops!)
+    // Main 60fps render loop
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
+      // Check if mouse has stopped moving for > 120ms
+      if (performance.now() - mouse.lastMoveTime > 120) {
+        mouse.speed *= 0.85;
+        mouse.vx *= 0.85;
+        mouse.vy *= 0.85;
+      }
+
+      // Update & draw ambient particles
       for (let i = 0; i < particles.length; i++) {
         particles[i].update();
         particles[i].draw();
+      }
+
+      // Update & draw dynamic mouse trail particles
+      for (let i = trailParticles.length - 1; i >= 0; i--) {
+        const p = trailParticles[i];
+        p.update();
+        p.draw();
+        if (p.life <= 0) {
+          trailParticles.splice(i, 1);
+        }
       }
 
       animationFrameId = requestAnimationFrame(render);
@@ -176,9 +301,9 @@ export default function AntigravityParticles() {
     render();
 
     return () => {
-      window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
