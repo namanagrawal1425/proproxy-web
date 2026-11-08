@@ -49,7 +49,7 @@ export default function TutorialSection() {
             {isPlaying ? (
               <iframe
                 className="w-full h-full"
-                src={`https://www.youtube-nocookie.com/embed/${tutorial.youtubeVideoId}?autoplay=1&rel=0`}
+                src={`https://youtu.be/15940iS1TT4`}
                 title="ProProxy Walkthrough Video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
@@ -73,7 +73,7 @@ export default function TutorialSection() {
                   </motion.button>
 
                   <h3 className="font-display text-xl sm:text-2xl font-medium text-white mb-2 max-w-xl">
-                    Master ProProxy in 4 Minutes: Nodes, Wi-Fi Automation & Rules
+                   ProProxy: Nodes, Wi-Fi Automation & Rules
                   </h3>
                   
                   <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-sans text-neutral-300 font-medium">
@@ -105,7 +105,7 @@ export default function TutorialSection() {
 
           </div>
 
-          <div className="mt-4 px-3 py-2 flex flex-col sm:flex-row items-center justify-between text-xs font-sans text-neutral-500 gap-2">
+          {/* <div className="mt-4 px-3 py-2 flex flex-col sm:flex-row items-center justify-between text-xs font-sans text-neutral-500 gap-2">
             <span className="text-neutral-600">
               💡 Configurable YouTube Link: edit <code className="text-neutral-800 bg-neutral-100 px-1.5 py-0.5 rounded border border-neutral-200">src/config.js</code> to link your official walkthrough.
             </span>
@@ -117,7 +117,7 @@ export default function TutorialSection() {
             >
               Open External Stream <ExternalLink className="w-3 h-3" />
             </a>
-          </div>
+          </div> */}
         </motion.div>
 
         {/* 4-Step Written Walkthrough for Users who prefer reading */}
