@@ -28,7 +28,7 @@ export default function TutorialSection() {
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-950 mb-5 leading-[1.15]">
             Up and Running in <br className="hidden sm:inline" />
             <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
-              Under 4 Minutes.
+              Under 7 Minutes.
             </span>
           </h2>
           <p className="text-neutral-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
