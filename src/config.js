@@ -64,8 +64,8 @@ export const PROPROXY_CONFIG = {
     heading: "Up and Running with ProProxy",
     subheading: "Watch the comprehensive walkthrough to configure routing rules, upstream chains, and live traffic telemetry in under 4 minutes.",
     // Replace with your real YouTube Video ID or full Embed URL
-    youtubeVideoId: "dQw4w9WgXcQ", // Replace with official ProProxy walkthrough video ID
-    youtubeWatchUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    youtubeVideoId: "15940iS1TT4", // Replace with official ProProxy walkthrough video ID
+    youtubeWatchUrl: "https://www.youtube.com/watch?v=15940iS1TT4",
     duration: "4 min 18 sec",
     author: "ProProxy Core Engineering",
     steps: [
