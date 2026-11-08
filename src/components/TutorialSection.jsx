@@ -49,7 +49,7 @@ export default function TutorialSection() {
             {isPlaying ? (
               <iframe
                 className="w-full h-full"
-                src={`https://youtu.be/15940iS1TT4`}
+                src={`https://www.youtube-nocookie.com/embed/${tutorial.youtubeVideoId}?autoplay=1&rel=0&modestbranding=1`}
                 title="ProProxy Walkthrough Video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
